@@ -17,13 +17,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public void register(RegistrationRequest registrationRequest) {
-        // TODO: validator
-        boolean userAlreadyExists = userRepository
-                .existsByLogin(registrationRequest.getLogin());
-        if (userAlreadyExists) {
-            throw new IllegalStateException("Login already taken");
-        }
-
         String encodedPassword = passwordEncoder.encode(registrationRequest.getPassword());
 
         User user = new User(
