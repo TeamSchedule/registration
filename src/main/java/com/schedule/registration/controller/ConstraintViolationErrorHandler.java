@@ -2,6 +2,7 @@ package com.schedule.registration.controller;
 
 import com.schedule.registration.model.response.DefaultErrorResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,15 +15,18 @@ public class ConstraintViolationErrorHandler {
     public ResponseEntity<?> handleDefaultErrorResponseErrors(
             MethodArgumentNotValidException exception
     ) {
+
         return ResponseEntity
                 .badRequest()
                 .body(
                         new DefaultErrorResponse(
+                                exception.getErrorCount(),
                                 exception
                                         .getBindingResult()
                                         .getAllErrors()
-                                        .get(0)
-                                        .getDefaultMessage()
+                                        .stream()
+                                        .map(ObjectError::getDefaultMessage)
+                                        .toList()
                         )
                 );
     }
