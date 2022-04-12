@@ -1,35 +1,31 @@
 package com.schedule.registration.service;
 
-import com.schedule.registration.model.entity.User;
+import com.schedule.registration.model.entity.RegistrationToken;
 import com.schedule.registration.model.request.RegistrationRequest;
-import com.schedule.registration.repository.UserRepository;
+import com.schedule.registration.repository.RegistrationTokenRepository;
+import com.schedule.registration.service.user.CreateUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final RegistrationTokenRepository registrationTokenRepository;
+    private final CreateUserService createUserService;
 
     @Override
     public void register(RegistrationRequest registrationRequest) {
-        String encodedPassword = passwordEncoder.encode(registrationRequest.getPassword());
+        Long userId = createUserService.create(registrationRequest).getUserId();
+        LocalDateTime creationDate = LocalDateTime.now();
 
-        User user = new User(
-                registrationRequest.getLogin(),
-                encodedPassword,
-                LocalDate.now(),
-                registrationRequest.getEmail()
+        RegistrationToken registrationToken = new RegistrationToken(
+                userId, creationDate, creationDate.plus(Duration.ofMinutes(15))
         );
-        userRepository.save(user);
+        registrationTokenRepository.save(registrationToken);
 
-        // TODO: call team service
-        /*Team team = new Team(registrationRequest.getLogin(), LocalDate.now());
-        team.getUsers().add(user);
-        teamRepository.save(team);*/
+        // TODO: call email service via rabbitmq
     }
 }

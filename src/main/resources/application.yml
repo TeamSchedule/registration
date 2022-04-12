@@ -10,3 +10,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+server:
+  port: 8081
+app:
+  external:
+    user:
+      address: "http://${USER_SERVICE_HOSTS}"
+
