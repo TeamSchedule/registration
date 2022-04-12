@@ -1,12 +1,12 @@
 package com.schedule.registration.model.request;
 
-import com.schedule.registration.validator.LoginAlreadyTakenConstraint;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 
 @Data
-@LoginAlreadyTakenConstraint
+@NoArgsConstructor
 public class RegistrationRequest {
     @NotEmpty(message = "Login is mandatory")
     @Size(min = 3, max = 30, message = "Login length must be in range between 3 and 30")
