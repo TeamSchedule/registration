@@ -1,4 +1,4 @@
-package com.schedule.registration.model.api_response;
+package com.schedule.registration.model.external;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
