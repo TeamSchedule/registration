@@ -1,7 +1,7 @@
 package com.schedule.registration.controller;
 
 import com.schedule.registration.model.request.RegistrationRequest;
-import com.schedule.registration.service.RegistrationService;
+import com.schedule.registration.service.registration.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

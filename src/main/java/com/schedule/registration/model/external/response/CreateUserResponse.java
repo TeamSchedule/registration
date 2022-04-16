@@ -1,4 +1,4 @@
-package com.schedule.registration.model.external;
+package com.schedule.registration.model.external.response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

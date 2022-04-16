@@ -1,4 +1,4 @@
-package com.schedule.registration.service;
+package com.schedule.registration.service.registration;
 
 import com.schedule.registration.model.request.RegistrationRequest;
 

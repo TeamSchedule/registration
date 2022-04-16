@@ -1,7 +1,7 @@
-package com.schedule.registration.service;
+package com.schedule.registration.service.registration;
 
 import com.schedule.registration.model.entity.RegistrationToken;
-import com.schedule.registration.model.external.SendEmailRequest;
+import com.schedule.registration.model.external.request.SendEmailRequest;
 import com.schedule.registration.model.request.RegistrationRequest;
 import com.schedule.registration.repository.RegistrationTokenRepository;
 import com.schedule.registration.service.link.AccessLinkService;
@@ -31,7 +31,6 @@ public class RegistrationServiceImpl implements RegistrationService {
         );
         registrationToken = registrationTokenRepository.save(registrationToken);
 
-        // TODO: generate link
         queueSendMessageService.send(
                 new SendEmailRequest(
                         registrationRequest.getLogin(),

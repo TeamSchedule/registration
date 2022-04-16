@@ -1,10 +1,8 @@
-package com.schedule.registration.model.external;
+package com.schedule.registration.model.external.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 @Data
 @AllArgsConstructor

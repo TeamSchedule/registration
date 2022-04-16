@@ -1,7 +1,7 @@
 package com.schedule.registration.service.rabbit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.schedule.registration.model.external.SendEmailRequest;
+import com.schedule.registration.model.external.request.SendEmailRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.amqp.core.Queue;
