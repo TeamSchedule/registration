@@ -12,12 +12,13 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ConfirmUserServiceImpl implements ConfirmUserService {
     private final HttpHeaders headers;
+    private final RestTemplate restTemplate;
     @Value("${app.external.user.address}")
     private String userServiceAddress;
 
     @Override
     public void confirm(RegistrationToken token) {
-        new RestTemplate().patchForObject(
+        restTemplate.patchForObject(
                 userServiceAddress + "/user/" + token.getUserId(),
                 new HttpEntity<>(headers),
                 Object.class

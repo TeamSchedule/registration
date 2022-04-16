@@ -14,13 +14,14 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class CreateUserServiceImpl implements CreateUserService {
     private final HttpHeaders headers;
+    private final RestTemplate restTemplate;
     @Value("${app.external.user.address}")
     private String userServiceAddress;
 
     @Override
     public CreateUserResponse create(RegistrationRequest registrationRequest) {
         HttpEntity<RegistrationRequest> requestEntity = new HttpEntity<>(registrationRequest, headers);
-        ResponseEntity<CreateUserResponse> response = new RestTemplate().postForEntity(
+        ResponseEntity<CreateUserResponse> response = restTemplate.postForEntity(
                 userServiceAddress + "/user",
                 requestEntity,
                 CreateUserResponse.class
