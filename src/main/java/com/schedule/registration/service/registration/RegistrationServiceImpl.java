@@ -3,9 +3,9 @@ package com.schedule.registration.service.registration;
 import com.schedule.registration.model.entity.RegistrationToken;
 import com.schedule.registration.model.external.request.SendEmailRequest;
 import com.schedule.registration.model.request.RegistrationRequest;
-import com.schedule.registration.repository.RegistrationTokenRepository;
 import com.schedule.registration.service.link.AccessLinkService;
 import com.schedule.registration.service.rabbit.QueueSendMessageService;
+import com.schedule.registration.service.token.SaveTokenService;
 import com.schedule.registration.service.user.CreateUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
-    private final RegistrationTokenRepository registrationTokenRepository;
+    private final SaveTokenService saveTokenService;
     private final CreateUserService createUserService;
     private final QueueSendMessageService queueSendMessageService;
     private final AccessLinkService accessLinkService;
@@ -29,7 +29,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         RegistrationToken registrationToken = new RegistrationToken(
                 userId, creationDate, creationDate.plus(Duration.ofMinutes(15))
         );
-        registrationToken = registrationTokenRepository.save(registrationToken);
+        registrationToken = saveTokenService.save(registrationToken);
 
         queueSendMessageService.send(
                 new SendEmailRequest(

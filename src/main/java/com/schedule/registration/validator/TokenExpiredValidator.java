@@ -18,8 +18,6 @@ public class TokenExpiredValidator
     @Override
     public boolean isValid(Long tokenId, ConstraintValidatorContext context) {
         RegistrationToken token = getTokenByIdService.get(tokenId);
-        System.out.println(token);
-        System.out.println(LocalDateTime.now());
         return LocalDateTime.now().isBefore(token.getExpiresAt());
     }
 }

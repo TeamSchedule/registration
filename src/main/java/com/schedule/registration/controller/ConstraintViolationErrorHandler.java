@@ -7,6 +7,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.List;
+
 @ControllerAdvice
 public class ConstraintViolationErrorHandler {
     @ExceptionHandler({
@@ -27,6 +31,22 @@ public class ConstraintViolationErrorHandler {
                                         .stream()
                                         .map(ObjectError::getDefaultMessage)
                                         .toList()
+                        )
+                );
+    }
+    @ExceptionHandler({
+            ConstraintViolationException.class
+    })
+    public ResponseEntity<?> handleDefaultErrorResponseErrors(
+            ConstraintViolationException exception
+    ) {
+        List<ConstraintViolation<?>> list = exception.getConstraintViolations().stream().toList();
+        return ResponseEntity
+                .badRequest()
+                .body(
+                        new DefaultErrorResponse(
+                                list.size(),
+                                list.stream().map(ConstraintViolation::getMessage).toList()
                         )
                 );
     }
