@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Validated
 @RequiredArgsConstructor
-@RequestMapping("/token")
+@RequestMapping("/registration/token")
 public class ConfirmTokenController {
     private final GetTokenByIdService getTokenByIdService;
     private final ConfirmRegistrationService confirmRegistrationService;
