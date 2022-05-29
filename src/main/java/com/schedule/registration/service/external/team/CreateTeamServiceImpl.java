@@ -22,7 +22,7 @@ public class CreateTeamServiceImpl implements CreateTeamService {
     public CreateTeamResponse create(CreateTeamRequest createTeamRequest) {
         HttpEntity<CreateTeamRequest> requestEntity = new HttpEntity<>(createTeamRequest, headers);
         ResponseEntity<CreateTeamResponse> response = restTemplate.postForEntity(
-                teamServiceAddress + "/team",
+                teamServiceAddress + "/schedule/team",
                 requestEntity,
                 CreateTeamResponse.class
         );
