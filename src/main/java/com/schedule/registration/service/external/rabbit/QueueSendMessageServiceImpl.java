@@ -1,4 +1,4 @@
-package com.schedule.registration.service.rabbit;
+package com.schedule.registration.service.external.rabbit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.schedule.registration.model.external.request.SendEmailRequest;

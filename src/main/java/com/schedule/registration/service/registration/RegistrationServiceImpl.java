@@ -4,9 +4,9 @@ import com.schedule.registration.model.entity.RegistrationToken;
 import com.schedule.registration.model.external.request.SendEmailRequest;
 import com.schedule.registration.model.request.RegistrationRequest;
 import com.schedule.registration.service.link.AccessLinkService;
-import com.schedule.registration.service.rabbit.QueueSendMessageService;
+import com.schedule.registration.service.external.rabbit.QueueSendMessageService;
 import com.schedule.registration.service.token.SaveTokenService;
-import com.schedule.registration.service.user.CreateUserService;
+import com.schedule.registration.service.external.user.CreateUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

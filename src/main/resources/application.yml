@@ -20,10 +20,12 @@ server:
 
 app:
   nginx:
-    port: 80
+    port: ${NGINX_PORT}
   queue:
     name: ${RABBIT_QUEUE}
   external:
+    schedule:
+      address: "http://${SCHEDULE_SERVICE_HOSTS}"
     user:
       address: "http://${USER_SERVICE_HOSTS}"
 

@@ -1,4 +1,4 @@
-package com.schedule.registration.service.user;
+package com.schedule.registration.service.external.user;
 
 import com.schedule.registration.model.entity.RegistrationToken;
 

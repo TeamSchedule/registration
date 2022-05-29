@@ -1,4 +1,4 @@
-package com.schedule.registration.service.rabbit;
+package com.schedule.registration.service.external.rabbit;
 
 import com.schedule.registration.model.external.request.SendEmailRequest;
 
