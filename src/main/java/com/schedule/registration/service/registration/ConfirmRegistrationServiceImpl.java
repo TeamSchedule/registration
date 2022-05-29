@@ -19,6 +19,6 @@ public class ConfirmRegistrationServiceImpl implements ConfirmRegistrationServic
     public void confirm(RegistrationToken token) {
         confirmUserService.confirm(token);
         confirmTokenService.confirm(token);
-        createTeamService.create(new CreateTeamRequest(String.valueOf(token.getUserId())));
+        createTeamService.create(new CreateTeamRequest(token.getUserId()));
     }
 }
