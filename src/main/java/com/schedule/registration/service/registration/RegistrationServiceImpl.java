@@ -35,7 +35,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 new SendEmailRequest(
                         registrationRequest.getLogin(),
                         registrationRequest.getEmail(),
-                        accessLinkService.link() + "/token/confirm/" + registrationToken.getId()
+                        accessLinkService.link() + "/confirm/" + registrationToken.getId()
                 )
         );
     }
