@@ -1,12 +1,10 @@
 package com.schedule.registration.service.external.team;
 
 import com.schedule.registration.model.external.request.CreateTeamRequest;
-import com.schedule.registration.model.external.response.CreateTeamResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,14 +17,12 @@ public class CreateTeamServiceImpl implements CreateTeamService {
     private String teamServiceAddress;
 
     @Override
-    public CreateTeamResponse create(CreateTeamRequest createTeamRequest) {
+    public void create(CreateTeamRequest createTeamRequest) {
         HttpEntity<CreateTeamRequest> requestEntity = new HttpEntity<>(createTeamRequest, headers);
-        ResponseEntity<CreateTeamResponse> response = restTemplate.postForEntity(
+        restTemplate.postForEntity(
                 teamServiceAddress + "/schedule/team/default",
                 requestEntity,
-                CreateTeamResponse.class
+                Object.class
         );
-
-        return response.getBody();
     }
 }
